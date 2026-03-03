@@ -53,7 +53,7 @@ export const GymQuestModal: React.FC<GymQuestModalProps> = ({ quest, onClose, on
               <div>
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-[10px] font-bold uppercase tracking-widest text-orange-500">Physical Performance</span>
-                  <span className="bg-white/10 px-2 py-0.5 rounded text-[10px] font-bold text-gray-400">XP +{quest.xpReward}</span>
+                  <span className="bg-white/10 px-2 py-0.5 rounded text-[10px] font-bold text-gray-400">Energy Restoration</span>
                 </div>
                 <h2 className="text-3xl font-display font-bold text-white mb-1">{quest.title}</h2>
                 <div className="flex items-center gap-4 text-xs text-gray-400">
@@ -136,9 +136,9 @@ export const GymQuestModal: React.FC<GymQuestModalProps> = ({ quest, onClose, on
                   Enter Arena <Play size={16} className="ml-2 fill-current" />
                 </Button>
                 <div className="flex flex-col justify-center items-center px-4">
-                   <span className="text-[10px] font-bold text-gray-500 uppercase">Streak</span>
+                   <span className="text-[10px] font-bold text-gray-500 uppercase">keep it up</span>
                    <div className="flex items-center gap-1 text-orange-500 font-bold">
-                     <Flame size={14} fill="currentColor" /> 3 Days
+                     <Flame size={14} fill="currentColor" /> on fire
                    </div>
                 </div>
               </div>

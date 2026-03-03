@@ -98,9 +98,9 @@ export const Hero: React.FC<HeroProps> = ({ onStudentDemo, onTeacherDemo }) => {
           transition={{ delay: 1.5, duration: 0.8 }}
           className="text-5xl md:text-7xl font-display font-bold leading-tight mb-6"
         >
-          Turn Studying Into <br />
+          Focus <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-secondary animate-pulse-slow">
-            Your Greatest Game
+            Without The Pressure.
           </span>
         </motion.h1>
 

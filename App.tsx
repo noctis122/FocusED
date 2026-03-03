@@ -48,7 +48,8 @@ const AppContent: React.FC = () => {
       goals: ['Ace Exams'],
       energyLevel: 'Moderate',
       theme: 'Neon Night',
-      soundPack: 'Cyber Gaming'
+      soundPack: 'Cyber Gaming',
+      consistencyLevel: 85
     });
     setView('DASHBOARD');
   };

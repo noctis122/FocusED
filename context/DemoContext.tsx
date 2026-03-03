@@ -106,52 +106,85 @@ const INITIAL_COURSE_CONTENT: Record<string, CourseChapter[]> = {
 };
 
 const INITIAL_QUESTS: Quest[] = [
-  { id: 'q0', title: 'Brain Kick', courseId: 'SYSTEM', type: 'BRAIN_KICK', duration: 1, difficulty: 'EASY', status: 'AVAILABLE', aiConfidence: 99, xpReward: 50, description: 'Activate your cognitive systems.' },
+  { 
+    id: 'q0', 
+    title: 'Brain Kick', 
+    courseId: 'SYSTEM', 
+    type: 'BRAIN_KICK', 
+    duration: 2, 
+    difficulty: 'EASY', 
+    intensity: 'LIGHT',
+    deadlineUrgency: 'LOW',
+    status: 'AVAILABLE', 
+    aiConfidence: 99, 
+    description: 'Activate your cognitive systems. 2 mins.',
+    emotionalSupportMessage: "Let's warm up the engine.",
+    subQuests: [
+      { id: 'bk1', title: 'Breathing Sync', duration: 1, type: 'MEDITATION', status: 'AVAILABLE', difficulty: 'EASY', microObjective: 'Center focus' },
+      { id: 'bk2', title: 'Recall Challenge', duration: 1, type: 'PRACTICE', status: 'LOCKED', difficulty: 'EASY', microObjective: 'Prime memory' }
+    ]
+  },
   { 
     id: 'q1', 
-    title: 'Kinematics Review', 
+    title: 'Study Schrödinger Equation', 
     courseId: 'c1', 
     type: 'SESSION', 
-    duration: 25, 
-    difficulty: 'MEDIUM', 
-    status: 'LOCKED', 
+    duration: 22, 
+    difficulty: 'MEDIUM',
+    intensity: 'MEDIUM',
+    deadlineUrgency: 'HIGH',
+    status: 'AVAILABLE', 
     aiConfidence: 95, 
-    xpReward: 150, 
-    description: 'Review velocity and acceleration vectors.', 
+    description: 'Master the wave function through decomposed steps.', 
+    emotionalSupportMessage: "This topic looked dense, so I've broken it into 4 safe steps.",
+    aiRationale: "High complexity topic + approaching midterm. I've prioritized concept mapping over heavy derivation.",
     subQuests: [
-      { id: 'sq1', title: 'Vector Analysis', duration: 10, type: 'READING', status: 'AVAILABLE', difficulty: 'MEDIUM' },
-      { id: 'sq2', title: 'Practice Set A', duration: 15, type: 'PRACTICE', status: 'LOCKED', difficulty: 'HARD' }
+      { id: 'sq1', title: 'Concept Flashcards', duration: 5, type: 'READING', status: 'AVAILABLE', difficulty: 'EASY', microObjective: 'Learn symbols (Ψ, Ĥ, E)' },
+      { id: 'sq2', title: 'Graph Interpretation', duration: 7, type: 'PRACTICE', status: 'LOCKED', difficulty: 'MEDIUM', microObjective: 'Visualize probability density' },
+      { id: 'sq3', title: 'Mini Quiz Reinforcement', duration: 5, type: 'PRACTICE', status: 'LOCKED', difficulty: 'MEDIUM', microObjective: 'Verify understanding' },
+      { id: 'sq4', title: 'Focus Session Practice', duration: 5, type: 'REVIEW', status: 'LOCKED', difficulty: 'MEDIUM', microObjective: 'Apply to simple problem' }
     ] 
   },
-  { id: 'q2', title: 'Derivatives Quiz', courseId: 'c2', type: 'QUIZ', duration: 15, difficulty: 'HARD', status: 'LOCKED', aiConfidence: 88, xpReward: 200, description: 'Quick fire quiz on chain rule.' },
-  { id: 'q3', title: 'Renaissance Flashcards', courseId: 'c3', type: 'FLASHCARD', duration: 10, difficulty: 'EASY', status: 'LOCKED', aiConfidence: 92, xpReward: 100 },
-  { id: 'q4', title: 'Lab Report Prep', courseId: 'c1', type: 'TEACHER', duration: 45, difficulty: 'HARD', status: 'LOCKED', aiConfidence: 100, xpReward: 300, description: 'Teacher Assigned: Prepare data tables.' },
-  { id: 'p1', title: 'Read Sci-Fi Novel', courseId: 'PERSONAL', type: 'PERSONAL', duration: 30, difficulty: 'EASY', status: 'LOCKED', aiConfidence: 100, xpReward: 50 },
   { 
-    id: 'q_gym', 
-    title: 'Upper Body Power', 
-    courseId: 'PERSONAL', 
-    type: 'FITNESS', 
-    duration: 60, 
-    difficulty: 'MEDIUM', 
-    status: 'AVAILABLE', 
-    aiConfidence: 100, 
-    xpReward: 200,
-    description: 'Strength training session optimized for evening energy levels.'
-  },
-  
-  // NEW DEMO QUEST: Large task ready for decomposition
-  { 
-    id: 'demo_big', 
-    title: 'Final Project: AI Ethics', 
+    id: 'q2', 
+    title: 'Data Structures Homework', 
     courseId: 'c1', 
     type: 'PROJECT', 
-    duration: 0, 
-    difficulty: 'HARD', 
+    duration: 35, 
+    difficulty: 'HARD',
+    intensity: 'DEEP',
+    deadlineUrgency: 'MODERATE',
     status: 'AVAILABLE', 
-    aiConfidence: 75, 
-    xpReward: 500, 
-    description: 'Prepare final presentation on ethical implications of AGI. (AI Decomposition Available)'
+    aiConfidence: 88, 
+    description: 'Implementation of Binary Search Tree.', 
+    emotionalSupportMessage: "Coding assignments can be stressful. Let's plan it first.",
+    aiRationale: "Project requires logical flow. Breaking into planning vs coding reduces cognitive load.",
+    subQuests: [
+      { id: 'ds1', title: 'Problem Comprehension', duration: 5, type: 'READING', status: 'AVAILABLE', difficulty: 'EASY', microObjective: 'Identify edge cases' },
+      { id: 'ds2', title: 'Algorithm Planning', duration: 10, type: 'PRACTICE', status: 'LOCKED', difficulty: 'MEDIUM', microObjective: 'Draft pseudo-code' },
+      { id: 'ds3', title: 'Implementation', duration: 15, type: 'PRACTICE', status: 'LOCKED', difficulty: 'HARD', microObjective: 'Write core logic' },
+      { id: 'ds4', title: 'Debug Review', duration: 5, type: 'REVIEW', status: 'LOCKED', difficulty: 'MEDIUM', microObjective: 'Verify test cases' }
+    ]
+  },
+  { 
+    id: 'q_gym', 
+    title: 'Evening Workout', 
+    courseId: 'PERSONAL', 
+    type: 'FITNESS', 
+    duration: 45, 
+    difficulty: 'MEDIUM',
+    intensity: 'MEDIUM',
+    deadlineUrgency: 'LOW',
+    status: 'AVAILABLE', 
+    aiConfidence: 100, 
+    description: 'Strength maintenance to support cognitive function.',
+    emotionalSupportMessage: "Movement fuels the mind. Just a quick session.",
+    aiRationale: "Sedentary day detected. Physical activation will boost focus for tomorrow.",
+    subQuests: [
+      { id: 'gym1', title: 'Dynamic Warm-up', duration: 5, type: 'WORKOUT', status: 'AVAILABLE', difficulty: 'EASY', microObjective: 'Joint mobility' },
+      { id: 'gym2', title: 'Training Routine', duration: 30, type: 'WORKOUT', status: 'LOCKED', difficulty: 'MEDIUM', microObjective: 'Hypertrophy focus' },
+      { id: 'gym3', title: 'Recovery Stretch', duration: 10, type: 'MEDITATION', status: 'LOCKED', difficulty: 'EASY', microObjective: 'Parasympathetic reset' }
+    ]
   }
 ];
 
@@ -391,6 +424,9 @@ interface DemoContextType {
   acceptRecoveryPlan: () => void;
   triggerExamPressure: () => void;
   resetBehavioralState: () => void;
+  
+  // New: Daily Capacity
+  dailyCapacity: number; // 0-100 percentage
 }
 
 const DemoContext = createContext<DemoContextType | undefined>(undefined);
@@ -414,6 +450,7 @@ export const DemoProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [studentState, setStudentState] = useState<StudentState>('OPTIMAL');
   const [workloadLevel, setWorkloadLevel] = useState<WorkloadLevel>('BALANCED');
   const [burnoutRisk, setBurnoutRisk] = useState<BurnoutRisk>('LOW');
+  const [dailyCapacity, setDailyCapacity] = useState(65); // Initial usage %
 
   // Actions
   const updateQuestStatus = (id: string, status: Quest['status']) => {
@@ -427,8 +464,13 @@ export const DemoProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       
       // Auto-unlock logic for demo flow
       if (status === 'COMPLETED') {
+        // Increase capacity usage (inverted logic: completing clears capacity for next day, but for demo we show usage)
+        // Let's pretend completing reduces the load? Or adds to "Used" capacity.
+        // Actually, "Capacity Usage" implies how much of your daily tank is full.
+        setDailyCapacity(prev => Math.min(prev + 10, 100));
+
         if (id === 'q0') { // Brain kick unlocks first set
-           return updated.map(q => (q.id === 'q1' || q.id === 'q3') ? { ...q, status: 'AVAILABLE' } : q);
+           return updated.map(q => (q.id === 'q1' || q.id === 'q3' || q.id === 'q2') ? { ...q, status: 'AVAILABLE' } : q);
         }
         // General unlock logic: unlock next locked quest
         const nextLocked = updated.find(q => q.status === 'LOCKED' && q.id !== id);
@@ -445,26 +487,8 @@ export const DemoProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     return new Promise<void>((resolve) => {
       setTimeout(() => {
         const quest = quests.find(q => q.id === questId);
-        
-        if (quest?.type === 'FITNESS') {
-           const subQuests: SubQuest[] = [
-             { id: `sq_${Date.now()}_1`, title: 'Warm-Up: Dynamic Stretch', duration: 5, type: 'PRACTICE', status: 'AVAILABLE', difficulty: 'EASY' },
-             { id: `sq_${Date.now()}_2`, title: 'Bench Press (3x10)', duration: 15, type: 'WORKOUT', status: 'LOCKED', difficulty: 'HARD' },
-             { id: `sq_${Date.now()}_3`, title: 'Pull Ups (3xFailure)', duration: 10, type: 'WORKOUT', status: 'LOCKED', difficulty: 'HARD' },
-             { id: `sq_${Date.now()}_4`, title: 'Cool Down & Stretch', duration: 5, type: 'PRACTICE', status: 'LOCKED', difficulty: 'EASY' }
-           ];
-           setQuests(prev => prev.map(q => q.id === questId ? { ...q, subQuests, duration: 35 } : q));
-        } else {
-          // Standard Academic breakdown
-          const subQuests: SubQuest[] = [
-            { id: `sq_${Date.now()}_1`, title: 'Research: Ethical Frameworks', duration: 45, type: 'READING', status: 'AVAILABLE', difficulty: 'MEDIUM', scheduledDate: getRelativeDate(1, 10) },
-            { id: `sq_${Date.now()}_2`, title: 'Case Study: Algorithmic Bias', duration: 30, type: 'PRACTICE', status: 'LOCKED', difficulty: 'HARD', scheduledDate: getRelativeDate(2, 14) },
-            { id: `sq_${Date.now()}_3`, title: 'Draft Outline Structure', duration: 20, type: 'REVIEW', status: 'LOCKED', difficulty: 'EASY', scheduledDate: getRelativeDate(2, 16) },
-            { id: `sq_${Date.now()}_4`, title: 'Final Presentation Mock', duration: 60, type: 'MOCK_EXAM', status: 'LOCKED', difficulty: 'HARD', scheduledDate: getRelativeDate(4, 11) }
-          ];
-          setQuests(prev => prev.map(q => q.id === questId ? { ...q, subQuests, duration: 155 } : q));
-          // Sync to calendar logic here...
-        }
+        // This function might be less used now that initial quests are pre-populated, 
+        // but useful for dynamic generation from other parts of the app.
         resolve();
       }, 3000); 
     });
@@ -498,9 +522,24 @@ export const DemoProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const startSession = (questId: string) => {
     if (activeSession && activeSession.questId === questId) return;
     
-    // Check if fitness quest for different session tasks
     const quest = quests.find(q => q.id === questId);
-    const sessionTasks = quest?.type === 'FITNESS' ? JSON.parse(JSON.stringify(GYM_SUBTASKS)) : JSON.parse(JSON.stringify(MOCK_SUBTASKS));
+    let sessionTasks: Subtask[] = [];
+
+    // Dynamically map subquests to session tasks if available
+    if (quest?.subQuests && quest.subQuests.length > 0) {
+      sessionTasks = quest.subQuests.map((sq, index) => ({
+        id: sq.id,
+        title: sq.title,
+        type: sq.type === 'READING' ? 'READING' : sq.type === 'WORKOUT' ? 'WORKOUT' : sq.type === 'PRACTICE' ? 'QUIZ' : 'FLASHCARDS', // Simple mapping
+        completed: sq.status === 'COMPLETED',
+        content: quest.type === 'FITNESS' 
+          ? { exercise: sq.title, sets: 3, reps: 10, rest: 60 } // Mock fitness content
+          : MOCK_SUBTASKS[index % MOCK_SUBTASKS.length].content // Recycle mock academic content for now
+      }));
+    } else {
+      // Fallback for non-decomposed quests
+      sessionTasks = quest?.type === 'FITNESS' ? JSON.parse(JSON.stringify(GYM_SUBTASKS)) : JSON.parse(JSON.stringify(MOCK_SUBTASKS));
+    }
 
     setActiveSession({
       questId,
@@ -549,6 +588,7 @@ export const DemoProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setStudentState('RECOVERY');
     setBurnoutRisk('HIGH');
     setWorkloadLevel('OVERLOAD');
+    setDailyCapacity(95);
   };
 
   const acceptRecoveryPlan = () => {
@@ -556,9 +596,9 @@ export const DemoProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setStudentState('OPTIMAL');
     setBurnoutRisk('LOW');
     setWorkloadLevel('BALANCED');
+    setDailyCapacity(40); // Reset capacity usage to something manageable
 
     // 2. Clear old dashboard quests (simulated by filtering for demo)
-    // In a real app we'd archive them. Here we just replace the list for the demo effect.
     
     const recoveryQuests: Quest[] = [
       {
@@ -568,10 +608,13 @@ export const DemoProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         type: 'BRAIN_KICK',
         duration: 5,
         difficulty: 'EASY',
+        intensity: 'LIGHT',
+        deadlineUrgency: 'LOW',
         status: 'AVAILABLE',
         aiConfidence: 100,
-        xpReward: 50,
-        description: 'Start slow. Just 5 minutes of focus breathing to reset.'
+        description: 'Start slow. Just 5 minutes of focus breathing to reset.',
+        emotionalSupportMessage: "Resetting your baseline.",
+        subQuests: [{ id: 'rk1', title: 'Box Breathing', duration: 5, type: 'MEDITATION', status: 'AVAILABLE', difficulty: 'EASY', microObjective: 'Calm nervous system' }]
       },
       {
         id: `rec_main_${Date.now()}`,
@@ -580,22 +623,15 @@ export const DemoProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         type: 'AI_REVISION',
         duration: 20,
         difficulty: 'MEDIUM',
+        intensity: 'MEDIUM',
+        deadlineUrgency: 'LOW',
         status: 'LOCKED', // Unlocks after Brain Kick in real logic, but available for demo flow
         aiConfidence: 90,
-        xpReward: 150,
-        description: 'Condensed review of Schrödinger Equation. No heavy math today.'
-      },
-      {
-        id: `rec_light_${Date.now()}`,
-        title: 'Code Logic Quiz',
-        courseId: 'c1', // Using c1 as placeholder for CS
-        type: 'QUIZ',
-        duration: 15,
-        difficulty: 'MEDIUM',
-        status: 'LOCKED',
-        aiConfidence: 85,
-        xpReward: 100,
-        description: 'Low-stakes quiz to keep your streak alive.'
+        description: 'Condensed review of Schrödinger Equation. No heavy math today.',
+        subQuests: [
+          { id: 'rm1', title: 'Video Summary', duration: 10, type: 'READING', status: 'AVAILABLE', difficulty: 'EASY', microObjective: 'Passive review' },
+          { id: 'rm2', title: 'Key Terms Match', duration: 10, type: 'PRACTICE', status: 'LOCKED', difficulty: 'MEDIUM', microObjective: 'Light recall' }
+        ]
       }
     ];
 
@@ -605,6 +641,7 @@ export const DemoProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const triggerExamPressure = () => {
     setWorkloadLevel('RISING');
     setBurnoutRisk('MODERATE');
+    setDailyCapacity(80);
     // Maybe reorder quests or add exam prep visual
   };
 
@@ -612,6 +649,7 @@ export const DemoProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setStudentState('OPTIMAL');
     setWorkloadLevel('BALANCED');
     setBurnoutRisk('LOW');
+    setDailyCapacity(65);
   };
 
   return (
@@ -629,7 +667,8 @@ export const DemoProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       isDebugOpen, setDebugOpen,
       selectedCourseId, setSelectedCourseId, getCourseContent,
       studentState, workloadLevel, burnoutRisk,
-      triggerRecoveryMode, acceptRecoveryPlan, triggerExamPressure, resetBehavioralState
+      triggerRecoveryMode, acceptRecoveryPlan, triggerExamPressure, resetBehavioralState,
+      dailyCapacity
     }}>
       {children}
     </DemoContext.Provider>

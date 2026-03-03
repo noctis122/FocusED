@@ -46,6 +46,7 @@ export interface UserProfile {
   energyLevel: 'Light' | 'Moderate' | 'Intensive';
   theme: string;
   soundPack: string;
+  consistencyLevel: number; // 0-100, drives the Aura intensity
 }
 
 // Behavioral Intelligence Types
@@ -78,6 +79,7 @@ export interface SubQuest {
   status: 'LOCKED' | 'AVAILABLE' | 'COMPLETED';
   difficulty: 'EASY' | 'MEDIUM' | 'HARD';
   scheduledDate?: Date; // Link to calendar
+  microObjective?: string; // Short goal for this step
 }
 
 export interface Quest {
@@ -87,12 +89,19 @@ export interface Quest {
   type: QuestType;
   duration: number; // minutes (total if parent)
   difficulty: 'EASY' | 'MEDIUM' | 'HARD';
+  intensity: 'LIGHT' | 'MEDIUM' | 'DEEP'; // Cognitive load
+  deadlineUrgency: 'LOW' | 'MODERATE' | 'HIGH'; // Urgency
   status: 'LOCKED' | 'AVAILABLE' | 'ACTIVE' | 'COMPLETED';
   aiConfidence: number; // 0-100
   description?: string;
   subQuests?: SubQuest[]; // New hierarchical structure
   subtasks?: string[]; // Deprecated, keeping for backward compat if needed, prefer subQuests
-  xpReward: number;
+  
+  // AI Decomposition Metadata
+  aiRationale?: string; // "Why these steps?"
+  emotionalSupportMessage?: string; // "This task looked overwhelming..."
+  
+  xpReward?: number;
 }
 
 export interface Reward {

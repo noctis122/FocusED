@@ -4,7 +4,7 @@ import {
   Play, Pause, CheckCircle, Brain, ChevronRight, 
   Clock, Shield, Zap, X, Volume2, VolumeX, Maximize2,
   RefreshCw, Award, ArrowRight, ThumbsUp, ThumbsDown, BarChart2,
-  Sparkles
+  Sparkles, Coffee
 } from 'lucide-react';
 import { Quest, Subtask, SessionPhase } from '../../types';
 import { Button } from '../ui/Button';
@@ -156,7 +156,7 @@ export const FocusMode: React.FC<FocusModeProps> = ({ quest, onExit, onComplete 
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
-  // STRICT LOADING STATE: Ensure we have the CORRECT session before rendering UI
+  // STRICT LOADING STATE
   if (!activeSession || activeSession.questId !== quest.id) {
     return (
       <div className="fixed inset-0 z-50 bg-[#030014] text-white flex flex-col items-center justify-center">
@@ -372,7 +372,7 @@ export const FocusMode: React.FC<FocusModeProps> = ({ quest, onExit, onComplete 
               </div>
             )}
 
-            {/* COMPLETION RITUAL */}
+            {/* COMPLETION RITUAL - UPDATED FOR IDENTITY REINFORCEMENT */}
             {(showSummary || phase === 'RITUAL_CLOSING') && (
               <div key="ritual" className="flex-1 flex flex-col items-center justify-center text-center h-full animate-in fade-in slide-in-from-bottom-8 duration-1000">
                 
@@ -386,8 +386,8 @@ export const FocusMode: React.FC<FocusModeProps> = ({ quest, onExit, onComplete 
                       className="flex flex-col items-center"
                     >
                       <div className="relative mb-8">
-                        <div className="w-32 h-32 rounded-full bg-gradient-to-tr from-primary to-secondary flex items-center justify-center shadow-[0_0_60px_rgba(0,242,234,0.4)] animate-pulse">
-                          <Award size={64} className="text-white" />
+                        <div className="w-32 h-32 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 flex items-center justify-center shadow-[0_0_60px_rgba(59,130,246,0.4)] animate-pulse">
+                          <CheckCircle size={64} className="text-white" />
                         </div>
                         <motion.div 
                           className="absolute inset-0 rounded-full border-2 border-white/20"
@@ -396,10 +396,14 @@ export const FocusMode: React.FC<FocusModeProps> = ({ quest, onExit, onComplete 
                         />
                       </div>
                       <h2 className="text-4xl font-display font-bold mb-2">Session Complete</h2>
-                      <p className="text-gray-400 mb-8 text-lg">Focus State Maintained: <span className="text-white font-bold">{formatTime(elapsed)}</span></p>
+                      <p className="text-gray-400 mb-8 text-lg">Focus Maintained: <span className="text-white font-bold">{formatTime(elapsed)}</span></p>
                       
+                      <div className="bg-white/5 px-6 py-3 rounded-full border border-white/10 mb-8">
+                        <span className="text-primary font-bold uppercase text-sm tracking-widest">Concept Strength Increased</span>
+                      </div>
+
                       <div className="flex gap-4">
-                        <Button onClick={() => setRitualStep(1)}>Begin Reflection</Button>
+                        <Button onClick={() => setRitualStep(1)}>Begin Safe Stop</Button>
                       </div>
                     </motion.div>
                   )}
@@ -415,14 +419,15 @@ export const FocusMode: React.FC<FocusModeProps> = ({ quest, onExit, onComplete 
                       <div className="bg-white/5 border border-white/10 rounded-2xl p-8 text-left">
                         <div className="flex items-center gap-3 mb-4">
                           <Sparkles size={20} className="text-primary" />
-                          <h3 className="font-bold text-lg">Micro Reflection</h3>
+                          <h3 className="font-bold text-lg">Identity Reinforcement</h3>
                         </div>
-                        <p className="text-gray-300 mb-6">What is the one key concept that feels clearer now?</p>
+                        <p className="text-gray-300 mb-6">You showed up today. That matters more than perfection.</p>
+                        <p className="text-sm text-gray-500 mb-6 font-bold uppercase tracking-widest">What stuck with you?</p>
                         <textarea 
                           className="w-full bg-black/40 border border-white/10 rounded-xl p-4 text-white focus:border-primary focus:outline-none h-32 resize-none mb-6"
-                          placeholder="I realized that..."
+                          placeholder="One key takeaway..."
                         />
-                        <Button onClick={() => setRitualStep(2)} className="w-full">Save & Continue</Button>
+                        <Button onClick={() => setRitualStep(2)} className="w-full">Save & Close Loop</Button>
                       </div>
                     </motion.div>
                   )}
@@ -434,7 +439,7 @@ export const FocusMode: React.FC<FocusModeProps> = ({ quest, onExit, onComplete 
                       animate={{ opacity: 1, scale: 1 }}
                       className="w-full max-w-lg"
                     >
-                      <h2 className="text-2xl font-bold mb-8">What's your next safe move?</h2>
+                      <h2 className="text-2xl font-bold mb-8">Safe Stop Protocol</h2>
                       
                       <div className="grid grid-cols-2 gap-4 mb-8">
                         <button 
@@ -442,10 +447,10 @@ export const FocusMode: React.FC<FocusModeProps> = ({ quest, onExit, onComplete 
                           className="bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl p-6 text-left group transition-all"
                         >
                           <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-500 mb-4 group-hover:scale-110 transition-transform">
-                            <Clock size={20} />
+                            <Coffee size={20} />
                           </div>
-                          <div className="font-bold mb-1">Take a Break</div>
-                          <div className="text-xs text-gray-500">15 min recovery recommended</div>
+                          <div className="font-bold mb-1">Recover</div>
+                          <div className="text-xs text-gray-500">Step away for 15m</div>
                         </button>
 
                         <button 
@@ -455,12 +460,12 @@ export const FocusMode: React.FC<FocusModeProps> = ({ quest, onExit, onComplete 
                           <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
                             <ArrowRight size={20} />
                           </div>
-                          <div className="font-bold mb-1">Next Task</div>
-                          <div className="text-xs text-gray-500">Maintain momentum</div>
+                          <div className="font-bold mb-1">Next Session</div>
+                          <div className="text-xs text-gray-500">If capacity allows</div>
                         </button>
                       </div>
                       
-                      <p className="text-gray-500 text-sm">Ritual complete. <span className="text-yellow-400">+{quest.xpReward} XP</span> added.</p>
+                      <p className="text-gray-500 text-sm">Session logged. <span className="text-primary font-bold">Knowledge Stability: Strengthening</span></p>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -497,11 +502,11 @@ export const FocusMode: React.FC<FocusModeProps> = ({ quest, onExit, onComplete 
 
            <div className="flex-1 overflow-y-auto space-y-4 pr-2">
              <div className="bg-white/5 p-3 rounded-lg rounded-tl-none border border-white/10 text-sm text-gray-300">
-               Welcome to the session. I've prepared the Kinematics material. Focus on the distinction between scalar and vector quantities.
+               Welcome to the session. I've prepared the material. Focus on the core concept first.
              </div>
              {currentTask?.type === 'QUIZ' && (
                 <div className="bg-primary/10 p-3 rounded-lg rounded-tl-none border border-primary/20 text-sm text-primary">
-                  Hint: Think about the direction vector. Even if speed is constant, if direction changes, velocity changes.
+                  Hint: Think about the direction vector.
                 </div>
              )}
            </div>
